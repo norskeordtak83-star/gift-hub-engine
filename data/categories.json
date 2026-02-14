@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "slug": "gifts-for-frequent-travelers",
+      "title": "International Gift Ideas for Frequent Travelers",
+      "intro": "Discover practical and thoughtful gift ideas for people who are always crossing borders, flying often, and adapting to new cultures.",
+      "section_headings": [
+        "Comfort Essentials for Long Journeys",
+        "Smart Organizers for Documents and Devices",
+        "Culture-Forward Gifts They Can Use Anywhere"
+      ],
+      "faq": [
+        {
+          "question": "How do I choose a gift for someone who travels globally?",
+          "answer": "Focus on portability, universal compatibility, and products that improve comfort or organization on the move."
+        },
+        {
+          "question": "Should travel gifts be personalized?",
+          "answer": "Personalization can add meaning, but practical utility should stay the first priority for frequent travelers."
+        }
+      ],
+      "top_picks_count": 6,
+      "audience": ["Adults", "Professionals"],
+      "occasion": ["Birthdays", "Holidays"],
+      "budget": ["Under 25", "25 to 50", "50 and Up"],
+      "interest": ["Travel", "Productivity", "Minimalism"]
+    },
+    {
+      "slug": "gifts-for-food-loving-families",
+      "title": "International Gift Ideas for Food-Loving Families",
+      "intro": "Explore gift ideas inspired by shared meals, home cooking, and culinary traditions that bring families together year-round.",
+      "section_headings": [
+        "Kitchen Tools for Everyday Creativity",
+        "Tabletop Gifts That Encourage Gathering",
+        "Culinary Experiences for Curious Tastes"
+      ],
+      "faq": [
+        {
+          "question": "What gift categories work well for family food enthusiasts?",
+          "answer": "Look for items that encourage shared cooking, meaningful hosting rituals, and experimentation with global flavors."
+        },
+        {
+          "question": "How can I keep food gifts evergreen?",
+          "answer": "Avoid trend-specific bundles and focus on timeless kitchen staples, reusable tools, and experience-based ideas."
+        }
+      ],
+      "top_picks_count": 6,
+      "audience": ["Families", "Parents"],
+      "occasion": ["Housewarming", "Anniversaries", "Holidays"],
+      "budget": ["Under 25", "25 to 50", "50 and Up"],
+      "interest": ["Cooking", "Entertaining", "Culture"]
+    }
+  ]
+}
