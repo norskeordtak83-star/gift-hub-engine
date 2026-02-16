@@ -58,6 +58,9 @@ Notes:
 - Supports `index` attribute (1-based), e.g. `[gift_hub_product_slot index="1"]`.
 - Renders product card number `index` from the current page's `top_picks` data when available.
 - Falls back to the existing placeholder card when no `top_picks` data is available.
+## Shortcodes
+### `[gift_hub_product_slot]`
+Existing product-slot placeholder shortcode used in Top Picks.
 
 ### `[gift_hub_list taxonomy="interest" term="Travel" limit="24"]`
 Renders a simple list of `gift_page` links filtered by taxonomy term.
