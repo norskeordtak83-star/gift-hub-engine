@@ -147,6 +147,33 @@ class GHE_Importer
 
         $top_picks = max(1, (int) ($page['top_picks_count'] ?? 6));
         update_post_meta($post_id, '_ghe_top_picks_count', $top_picks);
+
+        $top_picks_items = [];
+        foreach ((array) ($page['top_picks'] ?? []) as $item) {
+            if (! is_array($item)) {
+                continue;
+            }
+
+            $asin = strtoupper(preg_replace('/[^A-Z0-9]/', '', (string) ($item['asin'] ?? '')));
+            if ($asin === '') {
+                continue;
+            }
+
+            $label = sanitize_text_field((string) ($item['label'] ?? ''));
+            $notes = sanitize_textarea_field((string) ($item['notes'] ?? ''));
+            $url = esc_url_raw((string) ($item['url'] ?? ''));
+            $image_url = esc_url_raw((string) ($item['image_url'] ?? ''));
+
+            $top_picks_items[] = [
+                'asin' => $asin,
+                'label' => $label,
+                'url' => $url,
+                'notes' => $notes,
+                'image_url' => $image_url,
+            ];
+        }
+
+        update_post_meta($post_id, '_ghe_top_picks', $top_picks_items);
     }
 
     /** @param array<string,mixed> $page */

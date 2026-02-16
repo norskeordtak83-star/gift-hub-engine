@@ -89,6 +89,11 @@ class GHE_Template
         $sections = get_post_meta($post->ID, '_ghe_sections', true);
         $faq = get_post_meta($post->ID, '_ghe_faq', true);
         $top_picks_count = max(1, (int) get_post_meta($post->ID, '_ghe_top_picks_count', true));
+        $top_picks = self::get_top_picks_for_post($post->ID);
+        if (! empty($top_picks)) {
+            $top_picks_count = count($top_picks);
+        }
+
         $related_posts = self::get_related_gift_pages($post->ID, self::RELATED_LIMIT);
 
         $sections = is_array($sections) ? $sections : [];
@@ -167,6 +172,8 @@ class GHE_Template
             .ghe-link-list{padding-left:1rem}
             .ghe-link-list li{margin:0.3rem 0}
             .ghe-product-slot{border:1px solid #e8e8e8;border-radius:10px;padding:0.85rem}
+            .ghe-product-image{display:block;width:100%;max-width:240px;height:auto;border-radius:8px;margin:0 0 .65rem 0}
+            .ghe-product-image-placeholder{display:grid;place-items:center;width:100%;max-width:240px;min-height:120px;border:1px dashed #d9d9d9;border-radius:8px;margin:0 0 .65rem 0;background:#fafafa}
             .ghe-affiliate-btn{display:inline-block;background:#0a7cff;color:#fff;padding:.45rem .7rem;border-radius:8px;text-decoration:none}
             @media(min-width:768px){.ghe-grid{grid-template-columns:1fr 1fr}}
         </style>
@@ -232,6 +239,76 @@ class GHE_Template
         <?php
         wp_reset_postdata();
         return (string) ob_get_clean();
+    }
+
+
+    /**
+     * @return array<int,array<string,string>>
+     */
+    public static function get_top_picks_for_post(int $post_id): array
+    {
+        $raw = get_post_meta($post_id, '_ghe_top_picks', true);
+        if (! is_array($raw) || empty($raw)) {
+            return [];
+        }
+
+        $items = [];
+        foreach ($raw as $item) {
+            if (! is_array($item)) {
+                continue;
+            }
+
+            $asin = strtoupper(preg_replace('/[^A-Z0-9]/', '', (string) ($item['asin'] ?? '')));
+            if ($asin === '') {
+                continue;
+            }
+
+            $url = esc_url_raw((string) ($item['url'] ?? ''));
+            if ($url === '') {
+                $url = GHE_Settings::build_default_product_url($asin);
+            }
+
+            $label = sanitize_text_field((string) ($item['label'] ?? ''));
+            $notes = sanitize_textarea_field((string) ($item['notes'] ?? ''));
+
+            $image_url = esc_url_raw((string) ($item['image_url'] ?? ''));
+            if (! self::is_allowed_custom_image_url($image_url)) {
+                $image_url = '';
+            }
+
+            $items[] = [
+                'asin' => $asin,
+                'label' => $label,
+                'notes' => $notes,
+                'url' => $url,
+                'image_url' => $image_url,
+            ];
+        }
+
+        return $items;
+    }
+
+    /** @return array<string,string>|null */
+    public static function get_top_pick_by_index(int $post_id, int $index): ?array
+    {
+        $index = max(1, $index) - 1;
+        $top_picks = self::get_top_picks_for_post($post_id);
+        return $top_picks[$index] ?? null;
+    }
+
+    private static function is_allowed_custom_image_url(string $url): bool
+    {
+        if ($url === '') {
+            return false;
+        }
+
+        $host = wp_parse_url($url, PHP_URL_HOST);
+        if (! is_string($host) || $host === '') {
+            return false;
+        }
+
+        $host = strtolower($host);
+        return strpos($host, 'amazon.') === false && strpos($host, 'amzn.') === false;
     }
 
     public static function clear_related_cache(int $post_id): void
