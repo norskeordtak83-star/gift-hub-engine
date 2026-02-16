@@ -20,10 +20,43 @@
         }
       ],
       "top_picks_count": 6,
-      "audience": ["Adults", "Professionals"],
-      "occasion": ["Birthdays", "Holidays"],
-      "budget": ["Under 25", "25 to 50", "50 and Up"],
-      "interest": ["Travel", "Productivity", "Minimalism"]
+      "audience": [
+        "Adults",
+        "Professionals"
+      ],
+      "occasion": [
+        "Birthdays",
+        "Holidays"
+      ],
+      "budget": [
+        "Under 25",
+        "25 to 50",
+        "50 and Up"
+      ],
+      "interest": [
+        "Travel",
+        "Productivity",
+        "Minimalism"
+      ],
+      "top_picks": [
+        {
+          "asin": "B0C7TRAVEL1",
+          "label": "Compression Packing Cubes",
+          "url": "https://www.amazon.com/dp/B0C7TRAVEL1?tag=yourtag-20",
+          "notes": "Helps frequent travelers organize clothes quickly between airports, hotels, and short stops.",
+          "image_url": "https://examplecdn.com/images/packing-cubes.jpg"
+        },
+        {
+          "asin": "B0C7TRAVEL2",
+          "label": "Universal Travel Adapter",
+          "notes": "A practical option for international trips where outlets change from country to country."
+        },
+        {
+          "asin": "B0C7TRAVEL3",
+          "label": "RFID Passport Wallet",
+          "notes": "Keeps passport, cards, and boarding essentials together in one compact pouch."
+        }
+      ]
     },
     {
       "slug": "gifts-for-food-loving-families",
@@ -45,10 +78,25 @@
         }
       ],
       "top_picks_count": 6,
-      "audience": ["Families", "Parents"],
-      "occasion": ["Housewarming", "Anniversaries", "Holidays"],
-      "budget": ["Under 25", "25 to 50", "50 and Up"],
-      "interest": ["Cooking", "Entertaining", "Culture"]
+      "audience": [
+        "Families",
+        "Parents"
+      ],
+      "occasion": [
+        "Housewarming",
+        "Anniversaries",
+        "Holidays"
+      ],
+      "budget": [
+        "Under 25",
+        "25 to 50",
+        "50 and Up"
+      ],
+      "interest": [
+        "Cooking",
+        "Entertaining",
+        "Culture"
+      ]
     }
   ]
 }

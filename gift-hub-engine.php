@@ -19,12 +19,14 @@ define('GHE_PLUGIN_URL', plugin_dir_url(__FILE__));
 require_once GHE_PLUGIN_DIR . 'includes/class-ghe-post-types.php';
 require_once GHE_PLUGIN_DIR . 'includes/class-ghe-importer.php';
 require_once GHE_PLUGIN_DIR . 'includes/class-ghe-template.php';
+require_once GHE_PLUGIN_DIR . 'includes/class-ghe-settings.php';
 require_once GHE_PLUGIN_DIR . 'includes/class-ghe-cli.php';
 
 function ghe_bootstrap(): void
 {
     GHE_Post_Types::register_hooks();
     GHE_Template::register_hooks();
+    GHE_Settings::register_hooks();
 
     if (defined('WP_CLI') && WP_CLI) {
         GHE_CLI::register_hooks();
@@ -35,6 +37,10 @@ add_action('plugins_loaded', 'ghe_bootstrap');
 function ghe_activate(): void
 {
     GHE_Post_Types::register_content_types();
+
+    $importer = new GHE_Importer();
+    $importer->sync();
+
     flush_rewrite_rules();
 }
 register_activation_hook(__FILE__, 'ghe_activate');
