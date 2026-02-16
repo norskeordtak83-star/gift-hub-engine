@@ -35,6 +35,10 @@ add_action('plugins_loaded', 'ghe_bootstrap');
 function ghe_activate(): void
 {
     GHE_Post_Types::register_content_types();
+
+    $importer = new GHE_Importer();
+    $importer->sync();
+
     flush_rewrite_rules();
 }
 register_activation_hook(__FILE__, 'ghe_activate');
