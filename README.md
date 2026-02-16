@@ -54,8 +54,9 @@ Notes:
 - Amazon-hosted image URLs are intentionally blocked for this step.
 
 ## Shortcodes
-### `[gift_hub_product_slot index="1"]`
-- Renders product card number `index` (1-based) from the current page's `top_picks` data.
+### `[gift_hub_product_slot]`
+- Supports `index` attribute (1-based), e.g. `[gift_hub_product_slot index="1"]`.
+- Renders product card number `index` from the current page's `top_picks` data when available.
 - Falls back to the existing placeholder card when no `top_picks` data is available.
 
 ### `[gift_hub_list taxonomy="interest" term="Travel" limit="24"]`

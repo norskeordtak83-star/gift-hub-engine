@@ -242,7 +242,6 @@ class GHE_Template
     }
 
 
-
     /**
      * @return array<int,array<string,string>>
      */
