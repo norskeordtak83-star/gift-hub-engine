@@ -20,6 +20,7 @@ require_once GHE_PLUGIN_DIR . 'includes/class-ghe-post-types.php';
 require_once GHE_PLUGIN_DIR . 'includes/class-ghe-importer.php';
 require_once GHE_PLUGIN_DIR . 'includes/class-ghe-template.php';
 require_once GHE_PLUGIN_DIR . 'includes/class-ghe-settings.php';
+require_once GHE_PLUGIN_DIR . 'includes/class-ghe-amazon-paapi.php';
 require_once GHE_PLUGIN_DIR . 'includes/class-ghe-cli.php';
 
 function ghe_bootstrap(): void
