@@ -276,6 +276,21 @@ class GHE_Template
                 $image_url = '';
             }
 
+            $enrichment = class_exists('GHE_Amazon_PAAPI') ? GHE_Amazon_PAAPI::get_item($asin) : null;
+            if (is_array($enrichment)) {
+                if (! empty($enrichment['title'])) {
+                    $label = sanitize_text_field((string) $enrichment['title']);
+                }
+
+                if (! empty($enrichment['image_url'])) {
+                    $image_url = esc_url_raw((string) $enrichment['image_url']);
+                }
+
+                if (! empty($enrichment['url'])) {
+                    $url = esc_url_raw((string) $enrichment['url']);
+                }
+            }
+
             $items[] = [
                 'asin' => $asin,
                 'label' => $label,
